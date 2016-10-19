@@ -140,7 +140,8 @@ public class LatinKeyboard extends Keyboard {
 
     void setSpaceIcon(final Drawable icon) {
         if (mSpaceKey != null) {
-            mSpaceKey.icon = icon;
+            //commented to hide language flag icon
+            //mSpaceKey.icon = icon;
         }
     }
 

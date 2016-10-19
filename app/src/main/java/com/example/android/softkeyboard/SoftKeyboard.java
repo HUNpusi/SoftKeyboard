@@ -265,7 +265,7 @@ public class SoftKeyboard extends InputMethodService
 
     @Override
     public void onCurrentInputMethodSubtypeChanged(InputMethodSubtype subtype) {
-        mInputView.setSubtypeOnSpaceKey(subtype);
+        //mInputView.setSubtypeOnSpaceKey(subtype);
     }
 
     /**
@@ -661,6 +661,7 @@ public class SoftKeyboard extends InputMethodService
             mCapsLock = !mCapsLock;
             mLastShiftTime = 0;
         } else {
+            mCapsLock = false;
             mLastShiftTime = now;
         }
     }
