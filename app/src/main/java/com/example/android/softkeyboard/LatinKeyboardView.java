@@ -17,11 +17,20 @@
 package com.example.android.softkeyboard;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.Keyboard.Key;
 import android.inputmethodservice.KeyboardView;
 import android.util.AttributeSet;
 import android.view.inputmethod.InputMethodSubtype;
+import android.widget.Toast;
+
+import java.util.List;
+
+import static android.widget.Toast.LENGTH_LONG;
 
 public class LatinKeyboardView extends KeyboardView {
 
@@ -51,5 +60,59 @@ public class LatinKeyboardView extends KeyboardView {
         final LatinKeyboard keyboard = (LatinKeyboard)getKeyboard();
         keyboard.setSpaceIcon(getResources().getDrawable(subtype.getIconResId()));
         invalidateAllKeys();
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+
+        Resources r = super.getContext().getResources();
+
+        Paint paint = new Paint();
+        int mTextSize = r.getDimensionPixelSize(R.dimen.candidate_font_height);
+        paint.setTextSize(mTextSize);
+        paint.setColor(Color.GRAY);
+
+        //Toast.makeText(getContext(),"JááááJ", LENGTH_LONG).show();
+
+        List<Key> keys = getKeyboard().getKeys();
+        for(Key key: keys) {
+//            if(key.codes[0] == 113)
+//                canvas.drawText("1", key.x + (key.width/2), key.y + 25, paint);
+            if(key.label != null) {
+                if (key.label.toString().equals("q") || key.label.toString().equals("Q"))
+                    canvas.drawText(String.valueOf(1), key.x + (key.width / 2) - (mTextSize / 4), key.y + (key.height / 3), paint);
+
+                else if (key.label.toString().equals("w") || key.label.toString().equals("W"))
+                    canvas.drawText(String.valueOf(2), key.x + (key.width / 2) - (mTextSize / 4), key.y + (key.height / 3), paint);
+
+                else if (key.label.toString().equals("e") || key.label.toString().equals("E"))
+                    canvas.drawText(String.valueOf(3), key.x + (key.width / 2) - (mTextSize / 4), key.y + (key.height / 3), paint);
+
+                else if (key.label.toString().equals("r") || key.label.toString().equals("R"))
+                    canvas.drawText(String.valueOf(4), key.x + (key.width / 2) - (mTextSize / 4), key.y + (key.height / 3), paint);
+
+                else if (key.label.toString().equals("t") || key.label.toString().equals("T"))
+                    canvas.drawText(String.valueOf(5), key.x + (key.width / 2) - (mTextSize / 4), key.y + (key.height / 3), paint);
+
+                else if (key.label.toString().equals("z") || key.label.toString().equals("z"))
+                    canvas.drawText(String.valueOf(6), key.x + (key.width / 2) - (mTextSize / 4), key.y + (key.height / 3), paint);
+
+                else if (key.label.toString().equals("u") || key.label.toString().equals("U"))
+                    canvas.drawText(String.valueOf(7), key.x + (key.width / 2) - (mTextSize / 4), key.y + (key.height / 3), paint);
+
+                else if (key.label.toString().equals("i") || key.label.toString().equals("I"))
+                    canvas.drawText(String.valueOf(8), key.x + (key.width / 2) - (mTextSize / 4), key.y + (key.height / 3), paint);
+
+                else if (key.label.toString().equals("o") || key.label.toString().equals("o"))
+                    canvas.drawText(String.valueOf(9), key.x + (key.width / 2) - (mTextSize / 4), key.y + (key.height / 3), paint);
+
+                else if (key.label.toString().equals("p") || key.label.toString().equals("P"))
+                    canvas.drawText(String.valueOf(0), key.x + (key.width / 2) - (mTextSize / 4), key.y + (key.height / 3), paint);
+
+                else {
+                }
+            }
+        }
     }
 }

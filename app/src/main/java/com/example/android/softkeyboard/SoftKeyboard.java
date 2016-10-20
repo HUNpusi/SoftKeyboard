@@ -116,6 +116,7 @@ public class SoftKeyboard extends InputMethodService
     @Override public View onCreateInputView() {
         mInputView = (LatinKeyboardView) getLayoutInflater().inflate(
                 R.layout.input, null);
+        mInputView.setPreviewEnabled(false);
         mInputView.setOnKeyboardActionListener(this);
         setLatinKeyboard(mQwertyKeyboard);
         return mInputView;
@@ -368,7 +369,7 @@ public class SoftKeyboard extends InputMethodService
                     }
                 }
                 break;
-                
+
             case KeyEvent.KEYCODE_DEL:
                 // Special handling of the delete key: if we currently are
                 // composing text for the user, we want to modify that instead
@@ -378,11 +379,11 @@ public class SoftKeyboard extends InputMethodService
                     return true;
                 }
                 break;
-                
+
             case KeyEvent.KEYCODE_ENTER:
                 // Let the underlying text editor always handle these.
                 return false;
-                
+
             default:
                 // For all other keys, if we want to do transformations on
                 // text being entered with a hard keyboard, we need to process
@@ -413,7 +414,7 @@ public class SoftKeyboard extends InputMethodService
                     }
                 }
         }
-        
+
         return super.onKeyDown(keyCode, event);
     }
 
