@@ -46,6 +46,7 @@ public class LatinKeyboardView extends KeyboardView {
         super(context, attrs, defStyle);
     }
 
+    //ToDo: on longpress, run on possibilities on ticks.
     @Override
     protected boolean onLongPress(Key key) {
         if (key.codes[0] == Keyboard.KEYCODE_CANCEL) {
