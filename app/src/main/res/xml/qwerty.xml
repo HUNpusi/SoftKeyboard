@@ -45,9 +45,9 @@
         <Key android:codes="100" android:keyLabel="d"/>
         <Key android:codes="102" android:keyLabel="f"/>
         <Key android:codes="103" android:keyLabel="g"/>
-        <Key android:codes="104" android:keyLabel="h"/>
-        <Key android:codes="106,58" android:keyLabel="j" android:popupCharacters=":"/>
-        <Key android:codes="107,41" android:keyLabel="k" android:popupCharacters=")"/>
+        <Key android:codes="104,58" android:keyLabel="h" android:popupCharacters=":"/>
+        <Key android:codes="106,41" android:keyLabel="j"  android:popupCharacters=")"/>
+        <Key android:codes="107" android:keyLabel="k"/>
         <Key android:codes="108" android:keyLabel="l" android:keyEdgeFlags="right"/>
     </Row>
 
