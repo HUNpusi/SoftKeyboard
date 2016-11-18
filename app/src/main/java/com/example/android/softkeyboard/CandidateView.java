@@ -278,18 +278,18 @@ public class CandidateView extends View {
         case MotionEvent.ACTION_MOVE:
             if (y <= 0) {
                 // Fling up!?
-                if (mSelectedIndex >= 0) {
-                    mService.pickSuggestionManually(mSelectedIndex);
-                    mSelectedIndex = -1;
-                }
+//                if (mSelectedIndex >= 0) {
+//                    mService.pickSuggestionManually(mSelectedIndex);
+//                    mSelectedIndex = -1;
+//                }
             }
             invalidate();
             break;
         case MotionEvent.ACTION_UP:
             if (!mScrolled) {
-                if (mSelectedIndex >= 0) {
-                    mService.pickSuggestionManually(mSelectedIndex);
-                }
+//                if (mSelectedIndex >= 0) {
+//                    mService.pickSuggestionManually(mSelectedIndex);
+//                }
             }
             mSelectedIndex = -1;
             removeHighlight();
@@ -304,15 +304,15 @@ public class CandidateView extends View {
      * gesture.
      * @param x
      */
-    public void takeSuggestionAt(float x) {
-        mTouchX = (int) x;
-        // To detect candidate
-        onDraw(null);
-        if (mSelectedIndex >= 0) {
-            mService.pickSuggestionManually(mSelectedIndex);
-        }
-        invalidate();
-    }
+//    public void takeSuggestionAt(float x) {
+//        mTouchX = (int) x;
+//        // To detect candidate
+//        onDraw(null);
+//        if (mSelectedIndex >= 0) {
+//            mService.pickSuggestionManually(mSelectedIndex);
+//        }
+//        invalidate();
+//    }
 
     private void removeHighlight() {
         mTouchX = OUT_OF_BOUNDS;

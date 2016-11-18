@@ -26,16 +26,16 @@
     >
 
     <Row>
-        <Key android:codes="113" android:keyLabel="q" android:keyEdgeFlags="left"/>
-        <Key android:codes="119" android:keyLabel="w"/>
-        <Key android:codes="101,233" android:keyLabel="e" android:popupCharacters="é"/>
-        <Key android:codes="114" android:keyLabel="r"/>
-        <Key android:codes="116" android:keyLabel="t"/>
-        <Key android:codes="122" android:keyLabel="z"/>
-        <Key android:codes="117,250,252,369" android:keyLabel="u" android:popupCharacters="ú,ü,ű"/>
-        <Key android:codes="105,237" android:keyLabel="i" android:popupCharacters="í"/>
-        <Key android:codes="111,243,246,337" android:keyLabel="o" android:popupCharacters="ó,ö,ő"/>
-        <Key android:codes="112" android:keyLabel="p" android:keyEdgeFlags="right"/>
+        <Key android:codes="@string/keycode_1" android:keyLabel="@string/keylabel_1" android:popupCharacters="@string/keypopup_1" android:keyEdgeFlags="left"/>
+        <Key android:codes="@string/keycode_2" android:keyLabel="@string/keylabel_2" android:popupCharacters="@string/keypopup_2" />
+        <Key android:codes="@string/keycode_3" android:keyLabel="@string/keylabel_3" android:popupCharacters="@string/keypopup_3" />
+        <Key android:codes="@string/keycode_4" android:keyLabel="@string/keylabel_4" android:popupCharacters="@string/keypopup_4" />
+        <Key android:codes="@string/keycode_5" android:keyLabel="@string/keylabel_5" android:popupCharacters="@string/keypopup_5" />
+        <Key android:codes="@string/keycode_6" android:keyLabel="@string/keylabel_6" android:popupCharacters="@string/keypopup_6" />
+        <Key android:codes="@string/keycode_7" android:keyLabel="@string/keylabel_7" android:popupCharacters="@string/keypopup_7" />
+        <Key android:codes="@string/keycode_8" android:keyLabel="@string/keylabel_8" android:popupCharacters="@string/keypopup_8" />
+        <Key android:codes="@string/keycode_9" android:keyLabel="@string/keylabel_9" android:popupCharacters="@string/keypopup_9" />
+        <Key android:codes="@string/keycode_10" android:keyLabel="@string/keylabel_10" android:popupCharacters="@string/keypopup_10"  android:keyEdgeFlags="right"/>
     </Row>
 
     <Row>

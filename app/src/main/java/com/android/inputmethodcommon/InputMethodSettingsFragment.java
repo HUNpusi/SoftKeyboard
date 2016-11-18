@@ -27,6 +27,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+
 /**
  * This is a helper class for an IME's settings preference fragment. It's recommended for every
  * IME to have its own settings preference fragment which inherits this class.
@@ -39,7 +43,13 @@ public abstract class InputMethodSettingsFragment extends PreferenceFragment
         super.onCreate(savedInstanceState);
         final Context context = getActivity();
         setPreferenceScreen(getPreferenceManager().createPreferenceScreen(context));
-        mSettings.init(context, getPreferenceScreen());
+        try {
+            mSettings.init(context, getPreferenceScreen());
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

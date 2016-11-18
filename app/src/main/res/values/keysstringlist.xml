@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="keycode_1">113</string>                 <string name="keylabel_1">q</string><string name="keypopup_1"></string>
+    <string name="keycode_2">119</string>                 <string name="keylabel_2">w</string><string name="keypopup_2"></string>
+    <string name="keycode_3">101,233</string>             <string name="keylabel_3">e</string><string name="keypopup_3">é</string>
+    <string name="keycode_4">114</string>                 <string name="keylabel_4">r</string><string name="keypopup_4"></string>
+    <string name="keycode_5">116</string>                 <string name="keylabel_5">t</string><string name="keypopup_5"></string>
+    <string name="keycode_6">122</string>                 <string name="keylabel_6">z</string><string name="keypopup_6"></string>
+    <string name="keycode_7">117,250,252,369</string>     <string name="keylabel_7">u</string><string name="keypopup_7">ú,ü,ű</string>
+    <string name="keycode_8">105,237</string>             <string name="keylabel_8">i</string><string name="keypopup_8">í</string>
+    <string name="keycode_9">111,243,246,337</string>     <string name="keylabel_9">o</string><string name="keypopup_9">ó,ö,ő</string>
+    <string name="keycode_10">112</string>                <string name="keylabel_10">p</string><string name="keypopup_10"></string>
+
+
+
+    <string-array name="qertykeys">
+        <item>@string/keycode_1</item>
+        <item>@string/keycode_2</item>
+        <item>@string/keycode_3</item>
+        <item>@string/keycode_4</item>
+        <item>@string/keycode_5</item>
+        <item>@string/keycode_6</item>
+        <item>@string/keycode_7</item>
+        <item>@string/keycode_8</item>
+        <item>@string/keycode_9</item>
+        <item>@string/keycode_10</item>
+    </string-array>
+</resources>

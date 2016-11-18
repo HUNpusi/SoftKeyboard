@@ -25,15 +25,25 @@ package com.android.inputmethodcommon;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.inputmethodservice.Keyboard;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.InputMethodSubtype;
 
+import com.example.android.softkeyboard.LatinKeyboard;
+import com.example.android.softkeyboard.R;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /* package private */ class InputMethodSettingsImpl implements InputMethodSettingsInterface {
@@ -54,7 +64,7 @@ import java.util.List;
      * @param prefScreen a PreferenceScreen of PreferenceActivity or PreferenceFragment.
      * @return true if this application is an IME and has two or more subtypes, false otherwise.
      */
-    public boolean init(final Context context, final PreferenceScreen prefScreen) {
+    public boolean init(final Context context, final PreferenceScreen prefScreen) throws XmlPullParserException, IOException {
         mContext = context;
         mImm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         mImi = getMyImi(context, mImm);
@@ -81,6 +91,35 @@ import java.util.List;
                     }
                 });
         prefScreen.addPreference(mSubtypeEnablerPreference);
+
+        //ArrayList<String> items=new ArrayList<String>(R.array.qertykeys);
+        //XmlPullParser xpp = context.getResources().getXml(R.xml.qwerty);
+        //LatinKeyboard mQwertyKeyboard = new LatinKeyboard(this, R.xml.qwerty);
+        //LatinKeyboard mSymbolsKeyboard = new LatinKeyboard(this, R.xml.symbols);
+        //LatinKeyboard mSymbolsShiftedKeyboard = new LatinKeyboard(this, R.xml.symbols_shift);
+        //LatinKeyboard mSymbolsShiftedKeyboard = context.getResources().getXml(R.xml.symbols_shift);
+        //List<Keyboard.Key> keys = mQwertyKeyboard.getKeys();
+        //for(Keyboard.Key key: keys) {
+        //    if (key.popupCharacters != null) {
+        //        key.popupCharacters.toString();
+        //    }
+        //}
+//    try {
+//    while (xpp.getEventType()!=XmlPullParser.END_DOCUMENT && xpp.getEventType() != 0) {
+//        if (xpp.getEventType()==XmlPullParser.START_TAG) {
+//            if (xpp.getName().equals("word")) {
+//                items.add(xpp.getAttributeValue(0));
+//            }
+//        }
+//
+//        xpp.next();
+//    }
+//    }catch (Exception e)
+//    {
+//
+//    }
+
+
         updateSubtypeEnabler();
         return true;
     }
