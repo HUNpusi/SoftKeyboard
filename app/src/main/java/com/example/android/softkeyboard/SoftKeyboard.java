@@ -17,10 +17,12 @@
 package com.example.android.softkeyboard;
 
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.text.method.MetaKeyKeyListener;
 import android.view.KeyCharacterMap;
@@ -103,6 +105,11 @@ public class SoftKeyboard extends InputMethodService
             if (displayWidth == mLastDisplayWidth) return;
             mLastDisplayWidth = displayWidth;
         }
+
+//        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+//        String syncConnPref = sharedPref.getString("key_q", "");
+
+        LatinKeyboard.mContext=this;
         mQwertyKeyboard = new LatinKeyboard(this, R.xml.qwerty);
         mSymbolsKeyboard = new LatinKeyboard(this, R.xml.symbols);
         mSymbolsShiftedKeyboard = new LatinKeyboard(this, R.xml.symbols_shift);

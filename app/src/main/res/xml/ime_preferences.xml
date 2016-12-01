@@ -17,10 +17,10 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/settings_name">
     <PreferenceScreen
-        android:key="button_voicemail_category_key"
         android:title="Key Mapping"
         android:persistent="false">
-        <EditTextPreference
+        <com.example.android.softkeyboard.KeyMapPreference
+            android:key="key_q"
             android:name="@string/keylabel_1"
             android:defaultValue="@string/keylabel_1"
             android:title="@string/keylabel_1" />

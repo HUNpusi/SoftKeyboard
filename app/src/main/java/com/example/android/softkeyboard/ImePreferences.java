@@ -16,9 +16,14 @@
 
 package com.example.android.softkeyboard;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.PreferenceActivity;
+import android.util.AttributeSet;
+import android.widget.EditText;
+
 import com.android.inputmethodcommon.InputMethodSettingsFragment;
 
 /**
@@ -57,4 +62,4 @@ public class ImePreferences extends PreferenceActivity {
             addPreferencesFromResource(R.xml.ime_preferences);
         }
     }
-}
+    }

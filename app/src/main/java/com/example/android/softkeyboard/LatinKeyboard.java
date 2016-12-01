@@ -17,12 +17,23 @@
 package com.example.android.softkeyboard;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
 import android.graphics.drawable.Drawable;
 import android.inputmethodservice.Keyboard;
+import android.preference.PreferenceManager;
+import android.text.TextUtils;
+import android.util.Log;
+import android.util.TypedValue;
+import android.util.Xml;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
+
+import java.lang.ref.WeakReference;
+import java.util.StringTokenizer;
 
 public class LatinKeyboard extends Keyboard {
 
@@ -51,19 +62,36 @@ public class LatinKeyboard extends Keyboard {
      * {@link #mLanguageSwitchKey} is changed.
      */
     private Key mSavedLanguageSwitchKey;
-    
+
+    static public Context mContext;
+    SharedPreferences sharedPref;
+
     public LatinKeyboard(Context context, int xmlLayoutResId) {
         super(context, xmlLayoutResId);
+        this.mContext=context;
+        Toast.makeText(mContext, "LatinKeyBoard ctor", Toast.LENGTH_SHORT).show();
+
     }
 
     public LatinKeyboard(Context context, int layoutTemplateResId, 
             CharSequence characters, int columns, int horizontalPadding) {
         super(context, layoutTemplateResId, characters, columns, horizontalPadding);
+//        this.mContext=new WeakReference<Context>(context);
+//        sharedPref = PreferenceManager.getDefaultSharedPreferences(mContext.get());
     }
 
     @Override
     protected Key createKeyFromXml(Resources res, Row parent, int x, int y, 
             XmlResourceParser parser) {
+
+        //**Modifier for resource
+//        TypedArray a = res.obtainAttributes(Xml.asAttributeSet(parser),
+//                com.android.internal.R.styleable.Keyboard);
+//
+//
+//
+
+        //**Modifier ends
         Key key = new LatinKey(res, parent, x, y, parser);
         if (key.codes[0] == 10) {
             mEnterKey = key;
@@ -76,6 +104,16 @@ public class LatinKeyboard extends Keyboard {
             mLanguageSwitchKey = key;
             mSavedLanguageSwitchKey = new LatinKey(res, parent, x, y, parser);
         }
+
+        if (mContext != null) {
+            if (key.popupCharacters  != null) {
+                sharedPref = mContext.getSharedPreferences("ime_preferences",Context.MODE_PRIVATE);
+                Toast.makeText(mContext, key.label, Toast.LENGTH_SHORT).show();
+                String syncConnPref = sharedPref.getString("key_q", "");
+                key.label = syncConnPref;
+            }
+        }
+
         return key;
     }
 
@@ -143,6 +181,28 @@ public class LatinKeyboard extends Keyboard {
             //commented to hide language flag icon
             //mSpaceKey.icon = icon;
         }
+    }
+
+    static int[] parseCSV(String value) {
+        int count = 0;
+        int lastIndex = 0;
+        if (value.length() > 0) {
+            count++;
+            while ((lastIndex = value.indexOf(",", lastIndex + 1)) > 0) {
+                count++;
+            }
+        }
+        int[] values = new int[count];
+        count = 0;
+        StringTokenizer st = new StringTokenizer(value, ",");
+        while (st.hasMoreTokens()) {
+            try {
+                values[count++] = Integer.parseInt(st.nextToken());
+            } catch (NumberFormatException nfe) {
+                Log.e("Error", "Error parsing keycodes " + value);
+            }
+        }
+        return values;
     }
 
     static class LatinKey extends Keyboard.Key {
