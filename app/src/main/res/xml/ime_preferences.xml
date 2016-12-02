@@ -20,9 +20,19 @@
         android:title="Key Mapping"
         android:persistent="false">
         <com.example.android.softkeyboard.KeyMapPreference
-            android:key="key_q"
+            android:key="@string/keylabel_1"
             android:name="@string/keylabel_1"
             android:defaultValue="@string/keylabel_1"
             android:title="@string/keylabel_1" />
+        <com.example.android.softkeyboard.KeyMapPreference
+            android:key="@string/keylabel_2"
+            android:name="@string/keylabel_2"
+            android:defaultValue="@string/keylabel_2"
+            android:title="@string/keylabel_2"/>
+        <com.example.android.softkeyboard.KeyMapPreference
+            android:key="@string/keylabel_3"
+            android:name="@string/keylabel_3"
+            android:defaultValue="@string/keylabel_3"
+            android:title="@string/keylabel_3" />
     </PreferenceScreen>
 </PreferenceScreen>

@@ -106,11 +106,15 @@ public class LatinKeyboard extends Keyboard {
         }
 
         if (mContext != null) {
-            if (key.popupCharacters  != null) {
+
                 sharedPref = mContext.getSharedPreferences("ime_preferences",Context.MODE_PRIVATE);
-                Toast.makeText(mContext, key.label, Toast.LENGTH_SHORT).show();
-                String syncConnPref = sharedPref.getString("key_q", "");
-                key.label = syncConnPref;
+
+            if(key.label != null) {
+                String syncConnPref = sharedPref.getString(key.label.toString(), "");
+                if (!syncConnPref.isEmpty()) {
+                    Toast.makeText(mContext, key.label, Toast.LENGTH_SHORT).show();
+                    key.label = syncConnPref;
+                }
             }
         }
 
