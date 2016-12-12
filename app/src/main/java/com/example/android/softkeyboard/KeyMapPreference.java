@@ -51,7 +51,7 @@ public class KeyMapPreference extends EditTextPreference {
         // load shared preferences
         // init views
         super.onBindDialogView(view);
-        Toast.makeText(this.getContext(), "áááááááááááááááááááááÁÁÁÁÁÁÁÁ", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this.getContext(), "áááááááááááááááááááááÁÁÁÁÁÁÁÁ", Toast.LENGTH_SHORT).show();
 
         //EditText editText2 = mEditText2;
         EditText editText2 = new EditText(this.getContext());
@@ -83,7 +83,7 @@ public class KeyMapPreference extends EditTextPreference {
             editor.putString(this.getKey(), this.getText());
 
             editor.commit();
-            Toast.makeText(getContext(), "LOG: "+this.getText(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "LOG: "+this.getText(), Toast.LENGTH_SHORT).show();
 
         }
     }

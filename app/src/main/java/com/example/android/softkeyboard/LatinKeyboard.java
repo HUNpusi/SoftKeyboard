@@ -69,7 +69,7 @@ public class LatinKeyboard extends Keyboard {
     public LatinKeyboard(Context context, int xmlLayoutResId) {
         super(context, xmlLayoutResId);
         this.mContext=context;
-        Toast.makeText(mContext, "LatinKeyBoard ctor", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(mContext, "LatinKeyBoard ctor", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -112,7 +112,7 @@ public class LatinKeyboard extends Keyboard {
             if(key.label != null) {
                 String syncConnPref = sharedPref.getString(key.label.toString(), "");
                 if (!syncConnPref.isEmpty()) {
-                    Toast.makeText(mContext, key.label, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(mContext, key.label, Toast.LENGTH_SHORT).show();
                     key.label = syncConnPref;
                 }
             }
