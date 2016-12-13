@@ -459,8 +459,7 @@ public class SoftKeyboard extends InputMethodService
      * editor state.
      */
     private void updateShiftKeyState(EditorInfo attr) {
-        if (attr != null
-                && mInputView != null && mQwertyKeyboard == mInputView.getKeyboard()) {
+        if (attr != null && mInputView != null && mQwertyKeyboard == mInputView.getKeyboard()) {
             int caps = 0;
             EditorInfo ei = getCurrentInputEditorInfo();
             if (ei != null && ei.inputType != InputType.TYPE_NULL) {
@@ -519,6 +518,13 @@ public class SoftKeyboard extends InputMethodService
 //            }
             sendKey(primaryCode);
             updateShiftKeyState(getCurrentInputEditorInfo());
+            //Set back to qverty keyboard
+            Keyboard current = mInputView.getKeyboard();
+            if ((current == mSymbolsKeyboard || current == mSymbolsShiftedKeyboard)
+                    && !((48 <= primaryCode) && (57 >= primaryCode))) {
+                setLatinKeyboard(mQwertyKeyboard);
+            }
+            //Toast.makeText(this,String.valueOf(primaryCode), Toast.LENGTH_SHORT).show();
         } else if (primaryCode == Keyboard.KEYCODE_DELETE) {
             handleBackspace();
         } else if (primaryCode == Keyboard.KEYCODE_SHIFT) {
@@ -542,6 +548,13 @@ public class SoftKeyboard extends InputMethodService
             }
         } else {
             handleCharacter(primaryCode, keyCodes);
+            //Set back to qverty keyboard
+            Keyboard current = mInputView.getKeyboard();
+            if ((current == mSymbolsKeyboard || current == mSymbolsShiftedKeyboard)
+                    && !((48 <= primaryCode) && (57 >= primaryCode))) {
+                setLatinKeyboard(mQwertyKeyboard);
+            }
+            //Toast.makeText(this,String.valueOf(primaryCode), Toast.LENGTH_SHORT).show();
         }
     }
 
