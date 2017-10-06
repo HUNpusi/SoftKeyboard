@@ -47,7 +47,7 @@ public class KeyMapPreference extends DialogPreference {
         mEditText = new EditText(context, attrs);
 
         // Give it an ID so it can be saved/restored
-        mEditText.setId(9888);
+        mEditText.setId(View.generateViewId());
 
         Toast.makeText(this.getContext(), "áááááááááááááááááááááÁÁÁÁÁÁÁÁ", Toast.LENGTH_SHORT).show();
 
@@ -62,7 +62,7 @@ public class KeyMapPreference extends DialogPreference {
         mEditText2 = new EditText(context, attrs);
 
         // Give it an ID so it can be saved/restored
-        mEditText2.setId(99989);
+        mEditText2.setId(View.generateViewId());
     }
 
     public KeyMapPreference(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -130,7 +130,7 @@ public class KeyMapPreference extends DialogPreference {
         //EditText editText2 = mEditText2;
         EditText editText2 = new EditText(this.getContext());
         editText2.setText("anyááád");
-        editText2.setLabelFor(99989);
+        //editText2.setLabelFor(99989);
 
         SharedPreferences sharedPref = getContext().getSharedPreferences("ime_preferences",Context.MODE_PRIVATE);
         editText2.setText(sharedPref.getString(getEditText().getText().toString(),""));

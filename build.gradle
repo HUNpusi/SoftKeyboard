@@ -1,11 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+apply plugin: 'maven'
 buildscript {
     repositories {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -17,7 +19,28 @@ allprojects {
         jcenter()
     }
 }
+/*/ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'test-sdk'
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+    publishedGroupId = 'k'
+    }
+group publishedGroupId
+*/
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}
+
+//android {
+//    lintOptions {
+//       // set to true to turn off analysis progress reporting by lint
+//       quiet true
+//       // if true, stop the gradle build if errors are found
+//       abortOnError false
+//       // if true, only report errors
+//       ignoreWarnings true
+//       }
+//}

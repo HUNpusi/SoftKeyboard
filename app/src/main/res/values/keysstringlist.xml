@@ -2,7 +2,7 @@
 <resources>
     <string name="keycode_1">113</string>                 <string name="keylabel_1">q</string><string name="keypopup_1"></string>
     <string name="keycode_2">119</string>                 <string name="keylabel_2">w</string><string name="keypopup_2"></string>
-    <string name="keycode_3">101,233</string>             <string name="keylabel_3">e</string><string name="keypopup_3">é</string>
+    <string name="keycode_3">101,65000,233</string>       <string name="keylabel_3">e</string><string name="keypopup_3">ee,é</string>
     <string name="keycode_4">114</string>                 <string name="keylabel_4">r</string><string name="keypopup_4"></string>
     <string name="keycode_5">116</string>                 <string name="keylabel_5">t</string><string name="keypopup_5"></string>
     <string name="keycode_6">122</string>                 <string name="keylabel_6">z</string><string name="keypopup_6"></string>

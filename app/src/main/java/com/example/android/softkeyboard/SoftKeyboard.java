@@ -247,10 +247,6 @@ public class SoftKeyboard extends InputMethodService
     @Override public void onFinishInput() {
         super.onFinishInput();
 
-        // Clear current composing text and candidates.
-//        mComposing.setLength(0);
-        //updateCandidates();
-
         // We only hide the candidates window when finishing input on
         // a particular editor, to avoid popping the underlying application
         // up and down if the user is entering text into the bottom of
@@ -274,7 +270,6 @@ public class SoftKeyboard extends InputMethodService
 
     @Override
     public void onCurrentInputMethodSubtypeChanged(InputMethodSubtype subtype) {
-        //mInputView.setSubtypeOnSpaceKey(subtype);
     }
 
     /**
@@ -286,41 +281,12 @@ public class SoftKeyboard extends InputMethodService
         super.onUpdateSelection(oldSelStart, oldSelEnd, newSelStart, newSelEnd,
                 candidatesStart, candidatesEnd);
 
-        // If the current selection in the text view changes, we should
-        // clear whatever candidate text we have.
-//        if (mComposing.length() > 0 && (newSelStart != candidatesEnd
-//                || newSelEnd != candidatesEnd)) {
-//            mComposing.setLength(0);
-            //updateCandidates();
             InputConnection ic = getCurrentInputConnection();
             if (ic != null) {
                 ic.finishComposingText();
             }
-//        }
     }
 
-    /**
-     * This tells us about completions that the editor has determined based
-     * on the current text in it.  We want to use this in fullscreen mode
-     * to show the completions ourself, since the editor can not be seen
-     * in that situation.
-     */
-//    @Override public void onDisplayCompletions(CompletionInfo[] completions) {
-//        if (mCompletionOn) {
-//            mCompletions = completions;
-//            if (completions == null) {
-//                setSuggestions(null, false, false);
-//                return;
-//            }
-//
-//            List<String> stringList = new ArrayList<String>();
-//            for (int i = 0; i < completions.length; i++) {
-//                CompletionInfo ci = completions[i];
-//                if (ci != null) stringList.add(ci.getText().toString());
-//            }
-//            setSuggestions(stringList, true, true);
-//        }
-//    }
 
     /**
      * This translates incoming hard key events in to edit operations on an
@@ -343,16 +309,6 @@ public class SoftKeyboard extends InputMethodService
             dead = true;
             c = c & KeyCharacterMap.COMBINING_ACCENT_MASK;
         }
-
-//        if (mComposing.length() > 0) {
-//            char accent = mComposing.charAt(mComposing.length() -1 );
-//            int composed = KeyEvent.getDeadChar(accent, c);
-//
-//            if (composed != 0) {
-//                c = composed;
-//                mComposing.setLength(mComposing.length()-1);
-//            }
-//        }
 
         onKey(c, null);
 
@@ -382,11 +338,8 @@ public class SoftKeyboard extends InputMethodService
                 // Special handling of the delete key: if we currently are
                 // composing text for the user, we want to modify that instead
                 // of let the application to the delete itself.
-//                if (mComposing.length() > 0) {
-                    onKey(Keyboard.KEYCODE_DELETE, null);
-                    return true;
-//                }
-//                break;
+                onKey(Keyboard.KEYCODE_DELETE, null);
+                return true;
 
             case KeyEvent.KEYCODE_ENTER:
                 // Let the underlying text editor always handle these.
@@ -443,16 +396,6 @@ public class SoftKeyboard extends InputMethodService
         return super.onKeyUp(keyCode, event);
     }
 
-    /**
-     * Helper function to commit any text being composed in to the editor.
-     */
-//    private void commitTyped(InputConnection inputConnection) {
-//        if (mComposing.length() > 0) {
-//            inputConnection.commitText(mComposing, mComposing.length());
-//            mComposing.setLength(0);
-//           // updateCandidates();
-//        }
-//    }
 
     /**
      * Helper to update the shift state of our keyboard based on the initial
@@ -491,7 +434,7 @@ public class SoftKeyboard extends InputMethodService
     }
 
     /**
-     * Helper to send a character to the editor as raw key events.
+     * FOR SPEARATORS LIKE .,;()
      */
     private void sendKey(int keyCode) {
         switch (keyCode) {
@@ -512,13 +455,10 @@ public class SoftKeyboard extends InputMethodService
 
     public void onKey(int primaryCode, int[] keyCodes) {
         if (isWordSeparator(primaryCode)) {
-            // Handle separator
-//            if (mComposing.length() > 0) {
-//                commitTyped(getCurrentInputConnection());
-//            }
+            // Handle separator, like ,.;
             sendKey(primaryCode);
             updateShiftKeyState(getCurrentInputEditorInfo());
-            //Set back to qverty keyboard
+            //Set back to qverty keyboard if not number is the input
             Keyboard current = mInputView.getKeyboard();
             if ((current == mSymbolsKeyboard || current == mSymbolsShiftedKeyboard)
                     && !((48 <= primaryCode) && (57 >= primaryCode))) {
@@ -548,7 +488,7 @@ public class SoftKeyboard extends InputMethodService
             }
         } else {
             handleCharacter(primaryCode, keyCodes);
-            //Set back to qverty keyboard
+            //Set back to qverty keyboard if not number is the input
             Keyboard current = mInputView.getKeyboard();
             if ((current == mSymbolsKeyboard || current == mSymbolsShiftedKeyboard)
                     && !((48 <= primaryCode) && (57 >= primaryCode))) {
@@ -562,32 +502,12 @@ public class SoftKeyboard extends InputMethodService
         InputConnection ic = getCurrentInputConnection();
         if (ic == null) return;
         ic.beginBatchEdit();
-//        if (mComposing.length() > 0) {
-//            commitTyped(ic);
-//        }
         ic.commitText(text, 0);
         ic.endBatchEdit();
         updateShiftKeyState(getCurrentInputEditorInfo());
     }
 
-    /**
-     * Update the list of available candidates from the current composing
-     * text.  This will need to be filled in by however you are determining
-     * candidates.
-     */
-//    private void updateCandidates() {
-//        if (!mCompletionOn) {
-//            if (mComposing.length() > 0) {
-//                ArrayList<String> list = new ArrayList<String>();
-//                list.add(mComposing.toString());
-//                setSuggestions(list, true, true);
-//            } else {
-//                setSuggestions(null, false, false);
-//            }
-//        }
-//    }
-
-    public void setSuggestions(List<String> suggestions, boolean completions,
+     public void setSuggestions(List<String> suggestions, boolean completions,
             boolean typedWordValid) {
         if (suggestions != null && suggestions.size() > 0) {
             setCandidatesViewShown(true);
@@ -600,18 +520,7 @@ public class SoftKeyboard extends InputMethodService
     }
 
     private void handleBackspace() {
-//        final int length = mComposing.length();
-//        if (length > 1) {
-//            mComposing.delete(length - 1, length);
-//            getCurrentInputConnection().setComposingText(mComposing, 1);
-//            //updateCandidates();
-//        } else if (length > 0) {
-//            mComposing.setLength(0);
-//            getCurrentInputConnection().commitText("", 0);
-//            //updateCandidates();
-//        } else {
-            keyDownUp(KeyEvent.KEYCODE_DEL);
-//        }
+        keyDownUp(KeyEvent.KEYCODE_DEL);
         updateShiftKeyState(getCurrentInputEditorInfo());
     }
 
@@ -636,26 +545,41 @@ public class SoftKeyboard extends InputMethodService
         }
     }
 
+    int lastPrimaryCode = 0;
     private void handleCharacter(int primaryCode, int[] keyCodes) {
         if (isInputViewShown()) {
             if (mInputView.isShifted()) {
                 primaryCode = Character.toUpperCase(primaryCode);
             }
         }
-//        if (isAlphabet(primaryCode)) {
-//            mComposing.append((char) primaryCode);
-//            getCurrentInputConnection().setComposingText(mComposing, 1);
-//            updateShiftKeyState(getCurrentInputEditorInfo());
-//            //updateCandidates();
-//        } else {
-            getCurrentInputConnection().commitText(
-                    String.valueOf((char) primaryCode), 1);
+
+        //override special primaryCode ToDo: avoid hardcoded values
+        switch (primaryCode)
+        {
+            case 65000:
+                    getCurrentInputConnection().commitText((CharSequence)"ee", 2);
+                break;
+            default:
+                //last primaryCode was overrided. To keep switching characters,
+                //need to additional backspace if overrided char's size more than 1
+                if (lastPrimaryCode >= 65000)
+                    switch (primaryCode){
+                        case 233:
+                            handleBackspace();
+                            break;
+                        default:
+                            break;
+                    }
+
+                //commit text if we don't hack    
+                getCurrentInputConnection().commitText(String.valueOf((char) primaryCode), 1);
+                break;
+        }
         updateShiftKeyState(getCurrentInputEditorInfo());
-//        }
+        lastPrimaryCode = primaryCode;
     }
 
     private void handleClose() {
-//        commitTyped(getCurrentInputConnection());
         requestHideSelf(0);
         mInputView.closing();
     }
@@ -698,31 +622,8 @@ public class SoftKeyboard extends InputMethodService
         return separators.contains(String.valueOf((char)code));
     }
 
-//    public void pickDefaultCandidate() {
-//        pickSuggestionManually(0);
-//    }
-
-//    public void pickSuggestionManually(int index) {
-//        if (mCompletionOn && mCompletions != null && index >= 0
-//                && index < mCompletions.length) {
-//            CompletionInfo ci = mCompletions[index];
-//            getCurrentInputConnection().commitCompletion(ci);
-//            if (mCandidateView != null) {
-//                mCandidateView.clear();
-//            }
-//            updateShiftKeyState(getCurrentInputEditorInfo());
-//        } else if (mComposing.length() > 0) {
-//            // If we were generating candidate suggestions for the current
-//            // text, we would commit one of them here.  But for this sample,
-//            // we will just commit the current text.
-//            commitTyped(getCurrentInputConnection());
-//        }
-//    }
 
     public void swipeRight() {
-//        if (mCompletionOn) {
-//            pickDefaultCandidate();
-//        }
     }
 
     public void swipeLeft() {

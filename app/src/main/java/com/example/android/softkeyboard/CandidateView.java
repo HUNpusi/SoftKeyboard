@@ -246,7 +246,7 @@ public class CandidateView extends View {
         scrollTo(0, 0);
         mTargetScrollX = 0;
         // Compute the total width
-        onDraw(null);
+        draw(null);
         invalidate();
         requestLayout();
     }
